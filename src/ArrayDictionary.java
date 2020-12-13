@@ -17,49 +17,91 @@ public class ArrayDictionary<T,E> {
      */
 
     public ArrayDictionary() {
-        dictList = new ArrayList<T>();
-        keyList = new ArrayList<E>();
+
     }
 
     //add an key-value pair to the dictionary
     public void put(E key, T value) {
-        keyList.add(key);
-        dictList.add(value);
+
     }
 
     //get the value associated with a given key
     public T get(E key) {
-
-
+        boolean valueFlag = false;
+        int indexValue = -1;
+        while(!valueFlag) {
+            indexValue++;
+            if(keyList.get(indexValue).equals(key)) {
+                valueFlag = true;
+            }
+        }
+        return dictList.get(indexValue);
     }
 
     //remove a key-value pair and return its value
     public T remove(E key) {
+        boolean valueFlag = false;
+        int indexValue = -1;
+        while(!valueFlag) {
+            indexValue++;
+            if(keyList.get(indexValue).equals(key)) {
+                valueFlag = true;
+            }
+        }
 
+        T dictValue = dictList.get(indexValue);
+        dictList.remove(indexValue);
+        keyList.remove(indexValue);
+
+        return dictValue;
     }
 
     //returns true if the given key has an associated value
     public boolean contains(E key) {
+        boolean valueFlag = false;
+        int indexValue = -1;
+        while(!valueFlag) {
+            indexValue++;
+            if(keyList.get(indexValue).equals(key)) {
+                valueFlag = true;
+            }
+        }
+
+        if(dictList.get(indexValue) != null) {
+            return true;
+        }
+        else {
+            return false;
+        }
 
     }
 
     //returns true if the dictionary is empty
     public boolean isEmpty() {
-
+        if(dictList.size() == 0) {
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
     //returns the number of key-value pairs in the dictionary
     public int size() {
-
+        return dictList.size();
     }
 
-    //returns a Collection¹ of keys
+    //returns a Collection of keys
     public Collection<E> keys() {
+        Collection<E> keyCollection = keyList;
 
+        return keyCollection;
     }
 
     //returns a Collection of values
     public Collection<T>  values(){
+        Collection<T> valueCollection = dictList;
 
+        return valueCollection;
     }
 }
