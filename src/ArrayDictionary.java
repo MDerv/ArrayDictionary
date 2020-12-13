@@ -1,8 +1,8 @@
 /*
 Dhruv Sharma
 12/8/2020
-12/11/2020
-This is a the class that defines a queue using stacks.
+12/12/2020
+This is the class that defines a queue using stacks.
  */
 
 import java.util.*;
@@ -17,12 +17,14 @@ public class ArrayDictionary<T,E> {
      */
 
     public ArrayDictionary() {
-
+        dictList = new ArrayList<T>();
+        keyList = new ArrayList<E>();
     }
 
     //add an key-value pair to the dictionary
     public void put(E key, T value) {
-
+        keyList.add(key);
+        dictList.add(value);
     }
 
     //get the value associated with a given key
@@ -59,15 +61,13 @@ public class ArrayDictionary<T,E> {
     //returns true if the given key has an associated value
     public boolean contains(E key) {
         boolean valueFlag = false;
-        int indexValue = -1;
-        while(!valueFlag) {
-            indexValue++;
-            if(keyList.get(indexValue).equals(key)) {
+        for(int i = 0; i < keyList.size(); i++) {
+            if(keyList.get(i).equals(key)) {
                 valueFlag = true;
             }
         }
 
-        if(dictList.get(indexValue) != null) {
+        if(valueFlag) {
             return true;
         }
         else {
